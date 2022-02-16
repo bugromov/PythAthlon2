@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--)bccksdiz^esmxb1f8fey80ln4@thi2$3%wl##!j=(n031bf7'
+SECRET_KEY = os.environ.get('PythAthlon_Portal_Security_Key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
