@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Бронирования{% endblock %}
+
+{% block content %}
+<h1>Список бронирований</h1>
+    {% if current_bookings %}
+        {% for b in current_bookings %}
+            <a href="{%url 'room_booking:detail' b.id%}">{{b.meeting_room}}: {{b.datetime_begin}}-{{b.datetime_end}}</a>
+    <br>
+    {% endfor %}
+    {% else %}
+        Нет текущих бронирований
+    {% endif %}
+<br>
+<br>
+<iframe src="https://calendar.yandex.ru/embed/week?&layer_ids=12330874&tz_id=Europe/Moscow&layer_names=Мои события" width="800" height="450" frameborder="0" style="border: 1px solid #eee"></iframe>
+<br>
+<br>
+
+<h3>Добавить бронирование</h3>
+<form action="{% url 'room_booking:make_booking'% booking.id}" method="post">
+    <input type="datetime-local" required placeholder="Дата начала" name="begin_date"><br>
+    <input type="datetime-local" required placeholder="Дата окончания" name="end_date"><br>
+    <button type="submit">Забронировать</button>
+</form>
+{% endblock %}

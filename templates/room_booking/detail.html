@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{booking}}{% endblock %}
+
+{% block content %}
+    <h2>Переговорная комната: {{booking.meeting_room}}</h2>
+
+    <p>Дата начала: {{booking.datetime_begin}}</p>
+    <p>Дата окончания: {{booking.datetime_end}}</p>
+
+{% endblock %}
