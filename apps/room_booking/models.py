@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import constants
 
 
@@ -15,9 +16,10 @@ class MeetingRoom(models.Model):
 
 
 class Booking(models.Model):
-    meeting_room = models.ForeignKey(MeetingRoom, on_delete=models.CASCADE)
-    datetime_begin = models.DateTimeField("Дата начала", max_length=255)
-    datetime_end = models.DateTimeField("Дата окончания", max_length=255)
+    meeting_room = models.ForeignKey(MeetingRoom, on_delete=models.CASCADE, verbose_name="Комната")
+    datetime_begin = models.DateTimeField("Начало", max_length=255)
+    datetime_end = models.DateTimeField("Окончание", max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
     # TODO
     # booking_date = models.DateTimeField("Дата бронирования", max_length=255)
 
@@ -26,7 +28,9 @@ class Booking(models.Model):
         verbose_name_plural = 'Бронирования'
 
     def __str__(self):
-        return self.meeting_room.name + ': ' + str(self.datetime_begin.strftime("%d.%m.%Y %H:%M")) + '-' + str(self.datetime_end.strftime("%H:%M"))
+        return self.meeting_room.name + ': ' \
+               + str(self.datetime_begin.strftime("%d.%m.%Y %H:%M")) \
+               + '-' + str(self.datetime_end.strftime("%H:%M")) + ' (' + str(self.user) + ')'
 
     def book_the_room(self, dt_begin, dt_end, room):
         self.datetime_begin = dt_begin
