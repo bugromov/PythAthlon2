@@ -16,6 +16,7 @@ def detail(request, booking_id):
     return render(request, 'room_booking/detail.html', {'booking': b})
 
 
-def make_booking(request, booking_id):
-    b = Booking
+def add_booking(request):
+    current_bookings = Booking.objects.all
+    return render(request, 'room_booking/add_booking.html', {'current_bookings': current_bookings})
 

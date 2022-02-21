@@ -13,17 +13,14 @@
     {% else %}
         Нет текущих бронирований
     {% endif %}
-<br>
-<br>
-/* TODO insert correct key*/
-/*<iframe src="https://calendar.yandex.ru/embed/week?&layer_ids=***********_id=Europe/Moscow&layer_names=Мои события" width="800" height="450" frameborder="0" style="border: 1px solid #eee"></iframe>*/
+
+<form action="/add_booking/" target="_blank">
+   <button>Добавить бронирование</button>
+</form>
+
 <br>
 <br>
 
-<h3>Добавить бронирование</h3>
-<form action="{% url 'room_booking:make_booking'% booking.id}" method="post">
-    <input type="datetime-local" required placeholder="Дата начала" name="begin_date"><br>
-    <input type="datetime-local" required placeholder="Дата окончания" name="end_date"><br>
-    <button type="submit">Забронировать</button>
-</form>
+<br>
+
 {% endblock %}
